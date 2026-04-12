@@ -6,153 +6,155 @@
     <title>Team Avosity | Official</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
         :root { 
             --avosity-blue: #00d4ff; 
-            --dark-bg: #050505; 
+            --bg-dark: #050505;
             --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         body { 
-            background-color: var(--dark-bg); 
+            background-color: var(--bg-dark); 
             color: white; 
             font-family: 'Rajdhani', sans-serif;
-            overflow-x: hidden;
-        }
-        
-        /* Hero Banner with Parallax-ish feel */
-        .hero {
-            height: 60vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(5,5,5,1)), url('/static/banner.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            text-align: center;
-            border-bottom: 2px solid var(--glass-border);
+            scroll-behavior: smooth;
         }
 
-        .logo {
-            width: 140px; 
-            border-radius: 50%; 
-            border: 3px solid var(--avosity-blue);
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
-            transition: transform 0.5s ease;
+        /* Navbar Glow Effect */
+        .navbar {
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 15px 0;
         }
 
-        .logo:hover {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        h1 {
-            font-weight: 700;
-            letter-spacing: 5px;
+        .nav-link {
+            color: white !important;
+            font-weight: 600;
             text-transform: uppercase;
-            background: linear-gradient(to bottom, #fff, var(--avosity-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-top: 15px;
-        }
-
-        .hero p {
-            letter-spacing: 8px;
-            font-weight: 500;
-            opacity: 0.8;
-            color: var(--avosity-blue);
-        }
-
-        /* Glass Cards */
-        .social-card {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 40px 20px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-decoration: none;
-            color: white;
-            display: block;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            transition: 0.5s;
-        }
-
-        .social-card:hover::before {
-            left: 100%;
-        }
-
-        .social-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--avosity-blue);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
-            color: white;
-        }
-
-        .social-card i {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            transition: 0.3s ease;
-        }
-
-        .social-card:hover i {
-            transform: scale(1.2);
-            text-shadow: 0 0 20px var(--avosity-blue);
-        }
-
-        .social-card h3 {
-            font-weight: 700;
             letter-spacing: 2px;
-            text-transform: uppercase;
+            margin: 0 15px;
+            transition: 0.3s;
         }
 
-        .text-muted {
-            color: rgba(255,255,255,0.5) !important;
+        .nav-link:hover, .nav-link.active {
+            color: var(--avosity-blue) !important;
+            text-shadow: 0 0 15px var(--avosity-blue);
         }
 
+        /* Full Screen Hero Section */
+        section { min-height: 100vh; padding: 100px 20px; display: flex; align-items: center; }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/static/banner.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            text-align: center; justify-content: center; flex-direction: column;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 12vw, 6rem);
+            font-weight: 700; letter-spacing: 15px;
+            background: linear-gradient(to bottom, #fff, var(--avosity-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        /* Card Styling (Lumina Style) */
+        .glass-card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            transition: 0.4s;
+            text-align: center;
+            height: 100%;
+        }
+
+        .glass-card:hover {
+            border-color: var(--avosity-blue);
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .btn-avosity {
+            background: var(--avosity-blue);
+            color: black; font-weight: 700;
+            border-radius: 8px; padding: 10px 30px;
+            text-decoration: none; display: inline-block;
+            transition: 0.3s;
+        }
+
+        .btn-avosity:hover {
+            box-shadow: 0 0 20px var(--avosity-blue);
+            transform: scale(1.05); color: black;
+        }
+
+        .soon-text {
+            font-size: 3rem; opacity: 0.3; letter-spacing: 10px; text-transform: uppercase;
+        }
     </style>
 </head>
-<body>
+<body data-bs-spy="scroll" data-bs-target="#nav-main">
 
-    <section class="hero">
+    <nav id="nav-main" class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <img src="/static/logo.png" class="logo mb-3" alt="Avosity Logo">
-            <h1 class="display-2">TEAM AVOSITY</h1>
-            <p class="text-uppercase">The Future of Competitive Gaming</p>
+            <a class="navbar-brand" href="#"><img src="/static/logo.png" width="40" alt=""></a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link active" href="#home">Home</a>
+                <a class="nav-link" href="#merch">Merch</a>
+                <a class="nav-link" href="#socials">Socials</a>
+                <a class="nav-link" href="#roster">Roster</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <img src="/static/logo.png" width="150" class="mb-4" style="filter: drop-shadow(0 0 20px var(--avosity-blue))">
+        <h1>AVOSITY</h1>
+        <p class="text-uppercase tracking-widest opacity-75">The Future of Competitive Gaming</p>
+        <a href="#merch" class="btn-avosity mt-4">SHOP MERCH</a>
+    </section>
+
+    <section id="merch" class="text-center justify-content-center flex-column">
+        <h2 class="display-4 fw-bold mb-5">LATEST MERCH</h2>
+        <div class="soon-text">Coming Soon</div>
+    </section>
+
+    <section id="socials" class="justify-content-center">
+        <div class="container">
+            <h2 class="display-4 fw-bold text-center mb-5">JOIN THE COMMUNITY</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="glass-card">
+                        <i class="fab fa-discord fa-3x mb-3" style="color: var(--avosity-blue);"></i>
+                        <h3>DISCORD</h3>
+                        <a href="YOUR_LINK" class="btn-avosity">JOIN</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card">
+                        <i class="fab fa-x-twitter fa-3x mb-3" style="color: var(--avosity-blue);"></i>
+                        <h3>TWITTER</h3>
+                        <a href="YOUR_LINK" class="btn-avosity">FOLLOW</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card">
+                        <i class="fab fa-youtube fa-3x mb-3" style="color: var(--avosity-blue);"></i>
+                        <h3>YOUTUBE</h3>
+                        <a href="YOUR_LINK" class="btn-avosity">WATCH</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <div class="container my-5 py-5">
-        <div class="row g-5 text-center justify-content-center">
-            <div class="col-md-5">
-                <a href="https://discord.gg/DUFS9GZ3AU" target="_blank" class="social-card">
-                    <i class="fab fa-discord" style="color: #5865F2;"></i>
-                    <h3>Join Discord</h3>
-                    <p class="text-muted">Chat with the team and get tryout info.</p>
-                </a>
-            </div>
-            
-            <div class="col-md-5">
-                <a href="PASTE_SOCIALS_LINK_HERE" target="_blank" class="social-card">
-                    <i class="fab fa-x-twitter"></i>
-                    <h3>Follow Socials</h3>
-                    <p class="text-muted">See our latest clips and announcements.</p>
-                </a>
-            </div>
-        </div>
-    </div>
+    <section id="roster" class="text-center justify-content-center flex-column">
+        <h2 class="display-4 fw-bold mb-5">TEAM ROSTER</h2>
+        <div class="soon-text">Coming Soon</div>
+    </section>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
