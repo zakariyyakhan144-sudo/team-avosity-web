@@ -6,195 +6,171 @@
     <title>AVOSITY | SUPREME</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
         :root { 
             --avosity-blue: #00d4ff; 
-            --avosity-glow: rgba(0, 212, 255, 0.5);
-            --bg-black: #020202;
+            --deep-blue: #0045cc;
+            --bg-black: #000000;
         }
 
         body, html { 
-            margin: 0; padding: 0; min-height: 100vh; width: 100vw;
+            margin: 0; padding: 0; height: 100vh; width: 100vw;
             background: var(--bg-black); color: white; 
             font-family: 'Rajdhani', sans-serif;
-            overflow-x: hidden;
+            overflow: hidden; 
         }
 
-        /* CINEMATIC BACKGROUND SYSTEM */
+        /* DYNAMIC ENERGY BACKGROUND */
         .main-wrapper {
-            min-height: 100vh; width: 100vw;
+            height: 100vh; width: 100vw;
             position: relative;
-            background: radial-gradient(circle at 50% 50%, #050505 0%, #000 100%);
+            background: radial-gradient(circle at 50% 50%, #080808 0%, #000 100%);
             display: flex; flex-direction: column; align-items: center;
+            overflow: hidden;
         }
 
-        .energy-mesh {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 10% 10%, rgba(0, 212, 255, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 90%, rgba(0, 136, 255, 0.05) 0%, transparent 40%);
-            z-index: 0; filter: blur(50px);
-            animation: pulseBg 10s ease-in-out infinite alternate;
+        /* ENERGY BEAMS IN BACKGROUND */
+        .liquid-bg {
+            position: absolute; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 60%);
+            filter: blur(60px); animation: pulse 8s ease-in-out infinite alternate;
+            z-index: 0;
         }
+        @keyframes pulse { from { opacity: 0.4; transform: scale(1); } to { opacity: 0.8; transform: scale(1.2); } }
 
-        @keyframes pulseBg {
-            0% { opacity: 0.5; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.1); }
-        }
-
-        /* SUPREME NAVIGATION */
+        /* NAV BAR */
         .navbar {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            width: 100%; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 30px 0; z-index: 1000;
+            background: rgba(255, 255, 255, 0.01); backdrop-filter: blur(20px);
+            width: 100%; border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+            padding: 20px 0; z-index: 100;
         }
-
-        .nav-link-custom {
+        .nav-btn {
             background: none; border: none; color: white;
-            font-weight: 700; text-transform: uppercase; letter-spacing: 5px;
-            margin: 0 40px; cursor: pointer; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            opacity: 0.3; font-size: 1.1rem;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 4px;
+            margin: 0 30px; cursor: pointer; transition: 0.4s; opacity: 0.4;
         }
-
-        .nav-link-custom.active, .nav-link-custom:hover { 
-            opacity: 1; color: var(--avosity-blue); 
-            text-shadow: 0 0 25px var(--avosity-blue);
-            transform: translateY(-2px);
-        }
+        .nav-btn.active, .nav-btn:hover { opacity: 1; color: var(--avosity-blue); text-shadow: 0 0 15px var(--avosity-blue); }
 
         /* CONTENT ENGINE */
-        .content-area { flex-grow: 1; display: flex; align-items: center; justify-content: center; width: 100%; z-index: 10; padding: 60px 20px; }
-        .page-section { display: none; text-align: center; width: 100%; max-width: 1400px; }
-        .page-section.active { display: block; animation: entryAnim 1s cubic-bezier(0.19, 1, 0.22, 1); }
+        .content-area { flex-grow: 1; display: flex; align-items: center; justify-content: center; width: 100%; z-index: 10; padding: 20px; }
+        .page-section { display: none; text-align: center; width: 100%; max-width: 1300px; animation: entry 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+        .page-section.active { display: block; }
+        @keyframes entry { from { opacity: 0; transform: translateY(30px); filter: blur(10px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
 
-        @keyframes entryAnim {
-            0% { opacity: 0; transform: translateY(50px) scale(0.95); filter: blur(20px); }
-            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-        }
+        /* HOME LAYOUT OVERHAUL */
+        .hero-grid { display: grid; grid-template-columns: 1fr; gap: 20px; align-items: center; }
 
-        /* THE SOVEREIGN CARDS */
-        .sovereign-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px; position: relative; overflow: hidden;
-            transition: 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .sovereign-card::after {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 212, 255, 0.1) 0%, transparent 60%);
-            opacity: 0; transition: opacity 0.5s;
-        }
-
-        .sovereign-card:hover {
-            transform: translateY(-25px) scale(1.03);
-            border-color: var(--avosity-blue);
-            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 212, 255, 0.2);
-        }
-
-        .sovereign-card:hover::after { opacity: 1; }
-
-        .card-inner {
-            background: rgba(0,0,0,0.8); border-radius: 28px; margin: 2px; padding: 70px 30px;
-            z-index: 1; position: relative;
-        }
-
-        /* TYPOGRAPHY ART */
-        h1 { 
-            font-size: clamp(4rem, 20vw, 10rem); font-weight: 700; letter-spacing: 30px; margin: 0;
-            background: linear-gradient(to bottom, #fff 20%, var(--avosity-blue) 100%);
+        /* BEAM LOGO TEXT */
+        .beam-title {
+            font-size: clamp(3.5rem, 15vw, 9rem); font-weight: 700; letter-spacing: 20px;
+            position: relative; color: #111; /* Dark Blue base */
+            text-transform: uppercase; margin-bottom: 0;
+            background: linear-gradient(90deg, #001a33, #0045cc, #001a33);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 50px rgba(0, 212, 255, 0.4));
-            text-transform: uppercase;
         }
-
-        .hero-desc {
-            max-width: 850px; margin: 50px auto; font-size: 1.5rem; 
-            letter-spacing: 3px; line-height: 2; opacity: 0.6;
-            font-weight: 500; border-left: 2px solid var(--avosity-blue);
-            padding-left: 30px; text-align: left;
+        .beam-title::before {
+            content: 'AVOSITY'; position: absolute; left: 0; top: 0; width: 100%;
+            background: linear-gradient(90deg, transparent, var(--avosity-blue), transparent);
+            background-size: 200% 100%; animation: beamMove 3s linear infinite;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            z-index: 2; filter: drop-shadow(0 0 15px var(--avosity-blue));
         }
+        @keyframes beamMove { 0% { background-position: -200% 0%; } 100% { background-position: 200% 0%; } }
 
-        .ghost-text {
-            font-size: clamp(5rem, 15vw, 12rem); font-weight: 700; letter-spacing: 50px; 
-            color: rgba(255, 255, 255, 0.02); pointer-events: none;
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        .about-terminal {
+            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 15px; padding: 30px; max-width: 700px; margin: 30px auto;
+            text-align: left; position: relative; overflow: hidden;
         }
+        .about-terminal::before { content: 'SYSTEM STATUS: ONLINE'; position: absolute; top: 10px; right: 15px; font-size: 0.6rem; color: var(--avosity-blue); opacity: 0.5; }
 
-        /* MOBILE FIXES */
+        /* SOCIAL CARDS (GLOW RESTORED) */
+        .sovereign-card {
+            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px; position: relative; overflow: hidden; transition: 0.5s; z-index: 1;
+        }
+        .sovereign-card::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(transparent, transparent, var(--avosity-blue), transparent);
+            animation: rotate 4s linear infinite; z-index: -1;
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        
+        .card-inner { background: #000; border-radius: 22px; margin: 3px; padding: 60px 20px; z-index: 2; position: relative; }
+        .sovereign-card:hover { transform: translateY(-15px); border-color: var(--avosity-blue); box-shadow: 0 0 50px rgba(0, 212, 255, 0.4); }
+
+        /* MOBILE FIX */
         @media (max-width: 768px) {
             .navbar { padding: 15px 0; }
-            .nav-link-custom { margin: 0 10px; font-size: 0.7rem; letter-spacing: 2px; }
-            h1 { letter-spacing: 10px; }
-            .hero-desc { font-size: 1rem; padding-left: 15px; text-align: center; border-left: none; border-top: 1px solid var(--avosity-blue); padding-top: 20px; }
+            .nav-btn { margin: 0 10px; font-size: 0.7rem; }
+            .beam-title { letter-spacing: 8px; }
+            .about-terminal { font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="main-wrapper" id="scene">
-        <div class="energy-mesh"></div>
+    <div class="main-wrapper">
+        <div class="liquid-bg"></div>
         
         <nav class="navbar">
             <div class="container d-flex justify-content-center">
-                <button class="nav-link-custom active" onclick="showPage('home')">Home</button>
-                <button class="nav-link-custom" onclick="showPage('merch')">Merch</button>
-                <button class="nav-link-custom" onclick="showPage('socials')">Socials</button>
+                <button class="nav-btn active" onclick="showPage('home')">Home</button>
+                <button class="nav-btn" onclick="showPage('merch')">Merch</button>
+                <button class="nav-btn" onclick="showPage('socials')">Socials</button>
             </div>
         </nav>
 
         <div class="content-area">
             <div id="home" class="page-section active">
-                <img src="/static/logo.png" width="220" style="filter: drop-shadow(0 0 60px var(--avosity-blue)); animation: float 6s ease-in-out infinite;" class="mb-5">
-                <h1>AVOSITY</h1>
-                <div class="hero-desc">
-                    We are more than a team. We are the vanguard of competitive gaming. 
-                    Specializing in <strong>Rocket League</strong> and <strong>Fortnite</strong>, 
-                    Avosity is dedicated to precision, dominance, and the pursuit of absolute victory.
+                <div class="hero-grid">
+                    <img src="/static/logo.png" width="150" style="filter: drop-shadow(0 0 30px var(--avosity-blue));" class="mx-auto mb-2">
+                    <h1 class="beam-title">AVOSITY</h1>
+                    <div class="about-terminal">
+                        <p style="color: var(--avosity-blue); font-weight: 700; margin-bottom: 5px;">[ ABOUT_US ]</p>
+                        <p class="opacity-75 mb-0">We are a premier Esports organization. Domination is our standard. Specializing in <strong>Rocket League</strong> and <strong>Fortnite</strong>, we illuminate the path to victory.</p>
+                    </div>
                 </div>
             </div>
 
             <div id="merch" class="page-section">
-                <div class="ghost-text">LEGACY</div>
-                <h2 style="font-size: 4rem; letter-spacing: 20px; opacity: 0.5;">COMING SOON</h2>
+                <div style="font-size: 6rem; font-weight: 700; letter-spacing: 30px; opacity: 0.05;">SOON</div>
             </div>
 
             <div id="socials" class="page-section">
                 <div class="container">
-                    <div class="row g-5 justify-content-center">
-                        <div class="col-md-3">
+                    <div class="row g-4 justify-content-center">
+                        <div class="col-6 col-md-3">
                             <a href="YOUR_LINK" class="text-decoration-none">
                                 <div class="sovereign-card"><div class="card-inner">
-                                    <i class="fab fa-discord fa-5x mb-4" style="color: var(--avosity-blue);"></i>
-                                    <h4 class="text-white letter-spacing-5">DISCORD</h4>
+                                    <i class="fab fa-discord fa-3x mb-3" style="color: var(--avosity-blue);"></i>
+                                    <h5 class="text-white">DISCORD</h5>
                                 </div></div>
                             </a>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-6 col-md-3">
                             <a href="YOUR_LINK" class="text-decoration-none">
                                 <div class="sovereign-card"><div class="card-inner">
-                                    <i class="fab fa-x-twitter fa-5x mb-4" style="color: var(--avosity-blue);"></i>
-                                    <h4 class="text-white letter-spacing-5">TWITTER</h4>
+                                    <i class="fab fa-x-twitter fa-3x mb-3" style="color: var(--avosity-blue);"></i>
+                                    <h5 class="text-white">TWITTER</h5>
                                 </div></div>
                             </a>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-6 col-md-3">
                             <a href="YOUR_LINK" class="text-decoration-none">
                                 <div class="sovereign-card"><div class="card-inner">
-                                    <i class="fab fa-youtube fa-5x mb-4" style="color: var(--avosity-blue);"></i>
-                                    <h4 class="text-white letter-spacing-5">YOUTUBE</h4>
+                                    <i class="fab fa-youtube fa-3x mb-3" style="color: var(--avosity-blue);"></i>
+                                    <h5 class="text-white">YOUTUBE</h5>
                                 </div></div>
                             </a>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-6 col-md-3">
                             <a href="YOUR_LINK" class="text-decoration-none">
                                 <div class="sovereign-card"><div class="card-inner">
-                                    <i class="fab fa-tiktok fa-5x mb-4" style="color: var(--avosity-blue);"></i>
-                                    <h4 class="text-white letter-spacing-5">TIKTOK</h4>
+                                    <i class="fab fa-tiktok fa-3x mb-3" style="color: var(--avosity-blue);"></i>
+                                    <h5 class="text-white">TIKTOK</h5>
                                 </div></div>
                             </a>
                         </div>
@@ -205,28 +181,14 @@
     </div>
 
     <script>
-        // Smooth Section Switching
         function showPage(pageId) {
             document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            document.querySelectorAll('.nav-link-custom').forEach(btn => {
+            document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if(btn.innerText.toLowerCase() === 'origin' && pageId === 'home') btn.classList.add('active');
-                if(btn.innerText.toLowerCase() === 'armoury' && pageId === 'merch') btn.classList.add('active');
-                if(btn.innerText.toLowerCase() === 'nexus' && pageId === 'socials') btn.classList.add('active');
+                if(btn.innerText.toLowerCase() === pageId) btn.classList.add('active');
             });
         }
-
-        // Mouse Tracker for Cards
-        document.querySelectorAll('.sovereign-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / card.clientWidth) * 100;
-                const y = ((e.clientY - rect.top) / card.clientHeight) * 100;
-                card.style.setProperty('--mouse-x', `${x}%`);
-                card.style.setProperty('--mouse-y', `${y}%`);
-            });
-        });
     </script>
 </body>
 </html>
