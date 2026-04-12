@@ -22,6 +22,7 @@
             overflow: hidden; 
         }
 
+        /* 1. ANIMATED LIQUID BACKGROUND */
         .main-wrapper {
             height: 100vh; width: 100vw;
             position: relative;
@@ -38,86 +39,105 @@
         }
         @keyframes pulse { from { opacity: 0.4; transform: scale(1); } to { opacity: 0.8; transform: scale(1.2); } }
 
-        /* NAV BAR */
+        /* 2. NAVBAR WITH INTEGRATED LOGO */
         .navbar {
             background: rgba(255, 255, 255, 0.01); backdrop-filter: blur(20px);
             width: 100%; border-bottom: 1px solid rgba(0, 212, 255, 0.15);
-            padding: 15px 0; z-index: 100;
+            padding: 12px 0; z-index: 100;
         }
+
+        .nav-container {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px; width: 100%; position: relative;
+        }
+
+        .nav-logo {
+            width: 55px; height: 55px; object-fit: contain;
+            filter: drop-shadow(0 0 12px var(--avosity-blue));
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .nav-logo:hover { transform: scale(1.15) rotate(5deg); }
+
+        .nav-links-wrapper {
+            position: absolute; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 10px;
+        }
+
         .nav-btn {
             background: none; border: none; color: white;
             font-weight: 700; text-transform: uppercase; letter-spacing: 4px;
-            margin: 0 20px; cursor: pointer; transition: 0.4s; opacity: 0.4;
+            padding: 10px 20px; cursor: pointer; transition: 0.4s; opacity: 0.4;
         }
-        .nav-btn.active, .nav-btn:hover { opacity: 1; color: var(--avosity-blue); text-shadow: 0 0 15px var(--avosity-blue); }
+        .nav-btn.active, .nav-btn:hover { 
+            opacity: 1; color: var(--avosity-blue); 
+            text-shadow: 0 0 15px var(--avosity-blue), 0 0 30px var(--avosity-blue); 
+        }
 
-        /* CONTENT ENGINE */
+        /* 3. CONTENT AREA & ANIMATIONS */
         .content-area { flex-grow: 1; display: flex; align-items: center; justify-content: center; width: 100%; z-index: 10; padding: 20px; position: relative; }
         
-        /* LOGO TOP LEFT */
-        .corner-logo {
-            position: absolute; top: 40px; left: 40px;
-            width: 100px; filter: drop-shadow(0 0 20px var(--avosity-blue));
-            animation: float 4s ease-in-out infinite; z-index: 20;
-        }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
         .page-section { display: none; width: 100%; max-width: 1400px; animation: entry 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .page-section.active { display: block; }
-        @keyframes entry { from { opacity: 0; transform: scale(0.95); filter: blur(10px); } to { opacity: 1; transform: scale(1); filter: blur(0); } }
+        @keyframes entry { from { opacity: 0; transform: scale(0.96); filter: blur(15px); } to { opacity: 1; transform: scale(1); filter: blur(0); } }
 
-        /* HOME LAYOUT OVERHAUL */
+        /* 4. HOME PAGE: LASER BEAM TITLE */
         .home-content { text-align: center; }
 
         .beam-title {
-            font-size: clamp(3rem, 12vw, 7rem); font-weight: 700; letter-spacing: 15px;
-            position: relative; color: #111; text-transform: uppercase; margin-bottom: 20px;
+            font-size: clamp(3.5rem, 14vw, 8rem); font-weight: 700; letter-spacing: 18px;
+            position: relative; color: #001a33; text-transform: uppercase; margin-bottom: 25px;
             background: linear-gradient(90deg, #001a33, #0045cc, #001a33);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .beam-title::before {
             content: 'AVOSITY'; position: absolute; left: 0; top: 0; width: 100%;
-            background: linear-gradient(90deg, transparent, var(--avosity-blue), transparent);
-            background-size: 200% 100%; animation: beamMove 3s linear infinite;
+            background: linear-gradient(90deg, transparent, #fff, var(--avosity-blue), #fff, transparent);
+            background-size: 200% 100%; animation: beamMove 2.8s linear infinite;
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            z-index: 2; filter: drop-shadow(0 0 15px var(--avosity-blue));
+            z-index: 2; filter: drop-shadow(0 0 20px var(--avosity-blue));
         }
         @keyframes beamMove { 0% { background-position: -200% 0%; } 100% { background-position: 200% 0%; } }
 
         .about-text {
-            max-width: 800px; margin: 0 auto 40px; font-size: 1.4rem; 
-            line-height: 1.6; opacity: 0.8; letter-spacing: 2px;
+            max-width: 850px; margin: 0 auto 45px; font-size: 1.45rem; 
+            line-height: 1.7; opacity: 0.85; letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.15);
         }
 
-        /* SHOP MERCH BUTTON */
+        /* 5. SHOP MERCH BUTTON */
         .shop-btn {
             background: linear-gradient(45deg, var(--deep-blue), var(--avosity-blue));
-            border: none; color: white; padding: 15px 45px; border-radius: 10px;
-            font-weight: 700; text-transform: uppercase; letter-spacing: 3px;
-            box-shadow: 0 0 25px rgba(0, 212, 255, 0.4); transition: 0.4s;
-            cursor: pointer;
+            border: none; color: white; padding: 18px 55px; border-radius: 12px;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 4px;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4); transition: 0.4s;
+            cursor: pointer; position: relative; overflow: hidden;
         }
-        .shop-btn:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(0, 212, 255, 0.7); color: white; }
+        .shop-btn:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 0 50px var(--avosity-blue); color: white; }
 
-        /* SOCIAL CARDS */
+        /* 6. SOCIAL CARDS (NEON BEAMS) */
         .sovereign-card {
             background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px; position: relative; overflow: hidden; transition: 0.5s; z-index: 1;
+            border-radius: 30px; position: relative; overflow: hidden; transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1); z-index: 1;
         }
         .sovereign-card::before {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: conic-gradient(transparent, transparent, var(--avosity-blue), transparent);
-            animation: rotate 4s linear infinite; z-index: -1;
+            animation: rotate 3.5s linear infinite; z-index: -1;
         }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         
-        .card-inner { background: #000; border-radius: 22px; margin: 3px; padding: 60px 20px; z-index: 2; position: relative; text-align: center;}
-        .sovereign-card:hover { transform: translateY(-15px); border-color: var(--avosity-blue); box-shadow: 0 0 50px rgba(0, 212, 255, 0.4); }
+        .card-inner { background: #000; border-radius: 27px; margin: 3px; padding: 65px 25px; z-index: 2; position: relative; text-align: center;}
+        .sovereign-card:hover { transform: translateY(-18px) scale(1.02); border-color: var(--avosity-blue); box-shadow: 0 0 60px rgba(0, 212, 255, 0.4); }
 
+        /* 7. MOBILE OPTIMIZATION */
         @media (max-width: 768px) {
-            .corner-logo { top: 20px; left: 20px; width: 60px; }
-            .beam-title { letter-spacing: 5px; font-size: 2.5rem; }
-            .about-text { font-size: 1rem; }
+            .nav-container { padding: 0 20px; }
+            .nav-logo { width: 45px; height: 45px; }
+            .nav-links-wrapper { position: static; transform: none; margin-left: auto; gap: 0; }
+            .nav-btn { margin: 0 5px; font-size: 0.75rem; letter-spacing: 1px; padding: 10px; }
+            .beam-title { letter-spacing: 6px; font-size: 3rem; }
+            .about-text { font-size: 1.1rem; padding: 0 15px; }
+            .shop-btn { padding: 15px 35px; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -125,13 +145,18 @@
 
     <div class="main-wrapper">
         <div class="liquid-bg"></div>
-        <img src="/static/logo.png" class="corner-logo" alt="Logo">
         
         <nav class="navbar">
-            <div class="container d-flex justify-content-center">
-                <button class="nav-btn active" onclick="showPage('home')">Home</button>
-                <button class="nav-btn" onclick="showPage('merch')">Merch</button>
-                <button class="nav-btn" onclick="showPage('socials')">Socials</button>
+            <div class="nav-container">
+                <a href="#" onclick="showPage('home')">
+                    <img src="/static/logo.png" class="nav-logo" alt="Avosity Logo">
+                </a>
+                
+                <div class="nav-links-wrapper">
+                    <button class="nav-btn active" onclick="showPage('home')">Home</button>
+                    <button class="nav-btn" onclick="showPage('merch')">Merch</button>
+                    <button class="nav-btn" onclick="showPage('socials')">Socials</button>
+                </div>
             </div>
         </nav>
 
@@ -141,15 +166,15 @@
                     <h1 class="beam-title">AVOSITY</h1>
                     <p class="about-text">
                         We are a premier Esports organization. Domination is our standard. 
-                        Specializing in <strong>Rocket League</strong> and <strong>Fortnite</strong>, 
-                        we illuminate the path to victory through skill and community.
+                        Specializing in <strong>Rocket League</strong>, <strong>Fortnite</strong>, and <strong>CS2</strong>, 
+                        we illuminate the path to victory through elite skill and community power.
                     </p>
                     <button class="shop-btn" onclick="showPage('merch')">Shop Merch</button>
                 </div>
             </div>
 
             <div id="merch" class="page-section text-center">
-                <div style="font-size: 6rem; font-weight: 700; letter-spacing: 30px; opacity: 0.1;">SOON</div>
+                <div style="font-size: clamp(4rem, 15vw, 8rem); font-weight: 700; letter-spacing: 40px; opacity: 0.1; text-transform: uppercase;">SOON</div>
             </div>
 
             <div id="socials" class="page-section">
@@ -158,32 +183,32 @@
                         <div class="col-6 col-md-3">
                             <a href="YOUR_LINK" class="text-decoration-none">
                                 <div class="sovereign-card"><div class="card-inner">
-                                    <i class="fab fa-discord fa-3x mb-3" style="color: var(--avosity-blue);"></i>
-                                    <h5 class="text-white">DISCORD</h5>
+                                    <i class="fab fa-discord fa-4x mb-3" style="color: var(--avosity-blue);"></i>
+                                    <h5 class="text-white fw-bold">DISCORD</h5>
                                 </div></div>
                             </a>
                         </div>
                         <div class="col-6 col-md-3">
                             <a href="YOUR_LINK" class="text-decoration-none">
                                 <div class="sovereign-card"><div class="card-inner">
-                                    <i class="fab fa-x-twitter fa-3x mb-3" style="color: var(--avosity-blue);"></i>
-                                    <h5 class="text-white">TWITTER</h5>
+                                    <i class="fab fa-x-twitter fa-4x mb-3" style="color: var(--avosity-blue);"></i>
+                                    <h5 class="text-white fw-bold">TWITTER</h5>
                                 </div></div>
                             </a>
                         </div>
                         <div class="col-6 col-md-3">
                             <a href="YOUR_LINK" class="text-decoration-none">
                                 <div class="sovereign-card"><div class="card-inner">
-                                    <i class="fab fa-youtube fa-3x mb-3" style="color: var(--avosity-blue);"></i>
-                                    <h5 class="text-white">YOUTUBE</h5>
+                                    <i class="fab fa-youtube fa-4x mb-3" style="color: var(--avosity-blue);"></i>
+                                    <h5 class="text-white fw-bold">YOUTUBE</h5>
                                 </div></div>
                             </a>
                         </div>
                         <div class="col-6 col-md-3">
                             <a href="YOUR_LINK" class="text-decoration-none">
                                 <div class="sovereign-card"><div class="card-inner">
-                                    <i class="fab fa-tiktok fa-3x mb-3" style="color: var(--avosity-blue);"></i>
-                                    <h5 class="text-white">TIKTOK</h5>
+                                    <i class="fab fa-tiktok fa-4x mb-3" style="color: var(--avosity-blue);"></i>
+                                    <h5 class="text-white fw-bold">TIKTOK</h5>
                                 </div></div>
                             </a>
                         </div>
@@ -194,9 +219,14 @@
     </div>
 
     <script>
+        // Smooth Section Switcher
         function showPage(pageId) {
+            // Hide all sections
             document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            // Show target section
             document.getElementById(pageId).classList.add('active');
+            
+            // Update Navbar buttons glow
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if(btn.innerText.toLowerCase() === pageId) btn.classList.add('active');
