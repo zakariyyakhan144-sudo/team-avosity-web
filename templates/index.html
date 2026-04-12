@@ -22,16 +22,14 @@
             overflow: hidden; 
         }
 
-        /* DYNAMIC ENERGY BACKGROUND */
         .main-wrapper {
             height: 100vh; width: 100vw;
             position: relative;
             background: radial-gradient(circle at 50% 50%, #080808 0%, #000 100%);
-            display: flex; flex-direction: column; align-items: center;
+            display: flex; flex-direction: column;
             overflow: hidden;
         }
 
-        /* ENERGY BEAMS IN BACKGROUND */
         .liquid-bg {
             position: absolute; width: 100%; height: 100%;
             background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 60%);
@@ -44,29 +42,36 @@
         .navbar {
             background: rgba(255, 255, 255, 0.01); backdrop-filter: blur(20px);
             width: 100%; border-bottom: 1px solid rgba(0, 212, 255, 0.15);
-            padding: 20px 0; z-index: 100;
+            padding: 15px 0; z-index: 100;
         }
         .nav-btn {
             background: none; border: none; color: white;
             font-weight: 700; text-transform: uppercase; letter-spacing: 4px;
-            margin: 0 30px; cursor: pointer; transition: 0.4s; opacity: 0.4;
+            margin: 0 20px; cursor: pointer; transition: 0.4s; opacity: 0.4;
         }
         .nav-btn.active, .nav-btn:hover { opacity: 1; color: var(--avosity-blue); text-shadow: 0 0 15px var(--avosity-blue); }
 
         /* CONTENT ENGINE */
-        .content-area { flex-grow: 1; display: flex; align-items: center; justify-content: center; width: 100%; z-index: 10; padding: 20px; }
-        .page-section { display: none; text-align: center; width: 100%; max-width: 1300px; animation: entry 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+        .content-area { flex-grow: 1; display: flex; align-items: center; justify-content: center; width: 100%; z-index: 10; padding: 20px; position: relative; }
+        
+        /* LOGO TOP LEFT */
+        .corner-logo {
+            position: absolute; top: 40px; left: 40px;
+            width: 100px; filter: drop-shadow(0 0 20px var(--avosity-blue));
+            animation: float 4s ease-in-out infinite; z-index: 20;
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        .page-section { display: none; width: 100%; max-width: 1400px; animation: entry 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .page-section.active { display: block; }
-        @keyframes entry { from { opacity: 0; transform: translateY(30px); filter: blur(10px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+        @keyframes entry { from { opacity: 0; transform: scale(0.95); filter: blur(10px); } to { opacity: 1; transform: scale(1); filter: blur(0); } }
 
         /* HOME LAYOUT OVERHAUL */
-        .hero-grid { display: grid; grid-template-columns: 1fr; gap: 20px; align-items: center; }
+        .home-content { text-align: center; }
 
-        /* BEAM LOGO TEXT */
         .beam-title {
-            font-size: clamp(3.5rem, 15vw, 9rem); font-weight: 700; letter-spacing: 20px;
-            position: relative; color: #111; /* Dark Blue base */
-            text-transform: uppercase; margin-bottom: 0;
+            font-size: clamp(3rem, 12vw, 7rem); font-weight: 700; letter-spacing: 15px;
+            position: relative; color: #111; text-transform: uppercase; margin-bottom: 20px;
             background: linear-gradient(90deg, #001a33, #0045cc, #001a33);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
@@ -79,14 +84,22 @@
         }
         @keyframes beamMove { 0% { background-position: -200% 0%; } 100% { background-position: 200% 0%; } }
 
-        .about-terminal {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(0, 212, 255, 0.1);
-            border-radius: 15px; padding: 30px; max-width: 700px; margin: 30px auto;
-            text-align: left; position: relative; overflow: hidden;
+        .about-text {
+            max-width: 800px; margin: 0 auto 40px; font-size: 1.4rem; 
+            line-height: 1.6; opacity: 0.8; letter-spacing: 2px;
         }
-        .about-terminal::before { content: 'SYSTEM STATUS: ONLINE'; position: absolute; top: 10px; right: 15px; font-size: 0.6rem; color: var(--avosity-blue); opacity: 0.5; }
 
-        /* SOCIAL CARDS (GLOW RESTORED) */
+        /* SHOP MERCH BUTTON */
+        .shop-btn {
+            background: linear-gradient(45deg, var(--deep-blue), var(--avosity-blue));
+            border: none; color: white; padding: 15px 45px; border-radius: 10px;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 3px;
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.4); transition: 0.4s;
+            cursor: pointer;
+        }
+        .shop-btn:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(0, 212, 255, 0.7); color: white; }
+
+        /* SOCIAL CARDS */
         .sovereign-card {
             background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 25px; position: relative; overflow: hidden; transition: 0.5s; z-index: 1;
@@ -98,15 +111,13 @@
         }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         
-        .card-inner { background: #000; border-radius: 22px; margin: 3px; padding: 60px 20px; z-index: 2; position: relative; }
+        .card-inner { background: #000; border-radius: 22px; margin: 3px; padding: 60px 20px; z-index: 2; position: relative; text-align: center;}
         .sovereign-card:hover { transform: translateY(-15px); border-color: var(--avosity-blue); box-shadow: 0 0 50px rgba(0, 212, 255, 0.4); }
 
-        /* MOBILE FIX */
         @media (max-width: 768px) {
-            .navbar { padding: 15px 0; }
-            .nav-btn { margin: 0 10px; font-size: 0.7rem; }
-            .beam-title { letter-spacing: 8px; }
-            .about-terminal { font-size: 0.9rem; }
+            .corner-logo { top: 20px; left: 20px; width: 60px; }
+            .beam-title { letter-spacing: 5px; font-size: 2.5rem; }
+            .about-text { font-size: 1rem; }
         }
     </style>
 </head>
@@ -114,6 +125,7 @@
 
     <div class="main-wrapper">
         <div class="liquid-bg"></div>
+        <img src="/static/logo.png" class="corner-logo" alt="Logo">
         
         <nav class="navbar">
             <div class="container d-flex justify-content-center">
@@ -125,18 +137,19 @@
 
         <div class="content-area">
             <div id="home" class="page-section active">
-                <div class="hero-grid">
-                    <img src="/static/logo.png" width="150" style="filter: drop-shadow(0 0 30px var(--avosity-blue));" class="mx-auto mb-2">
+                <div class="home-content">
                     <h1 class="beam-title">AVOSITY</h1>
-                    <div class="about-terminal">
-                        <p style="color: var(--avosity-blue); font-weight: 700; margin-bottom: 5px;">[ ABOUT_US ]</p>
-                        <p class="opacity-75 mb-0">We are a premier Esports organization. Domination is our standard. Specializing in <strong>Rocket League</strong> and <strong>Fortnite</strong>, we illuminate the path to victory.</p>
-                    </div>
+                    <p class="about-text">
+                        We are a premier Esports organization. Domination is our standard. 
+                        Specializing in <strong>Rocket League</strong> and <strong>Fortnite</strong>, 
+                        we illuminate the path to victory through skill and community.
+                    </p>
+                    <button class="shop-btn" onclick="showPage('merch')">Shop Merch</button>
                 </div>
             </div>
 
-            <div id="merch" class="page-section">
-                <div style="font-size: 6rem; font-weight: 700; letter-spacing: 30px; opacity: 0.05;">SOON</div>
+            <div id="merch" class="page-section text-center">
+                <div style="font-size: 6rem; font-weight: 700; letter-spacing: 30px; opacity: 0.1;">SOON</div>
             </div>
 
             <div id="socials" class="page-section">
