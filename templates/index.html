@@ -16,15 +16,17 @@
         }
 
         body, html { 
-            margin: 0; padding: 0; height: 100vh; width: 100vw;
+            margin: 0; padding: 0; min-height: 100vh; width: 100vw;
             background: var(--bg-pure); color: white; 
             font-family: 'Rajdhani', sans-serif;
-            overflow: hidden; 
+            overflow-x: hidden; 
         }
 
-        /* Animated Mesh Background */
+        /* Responsive Scroll Control */
+        @media (min-width: 992px) { body, html { overflow: hidden; } }
+
         .main-wrapper {
-            height: 100vh; width: 100vw;
+            min-height: 100vh; width: 100vw;
             position: relative;
             background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1) 0%, rgba(0,0,0,1) 70%);
             display: flex; flex-direction: column; align-items: center;
@@ -37,7 +39,6 @@
             z-index: -1;
         }
 
-        /* Nav Bar - Cyber Style */
         .navbar {
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(20px);
@@ -47,25 +48,24 @@
 
         .nav-btn {
             background: none; border: none; color: white;
-            font-weight: 700; text-transform: uppercase; letter-spacing: 3px;
-            margin: 0 25px; cursor: pointer; transition: 0.4s;
-            position: relative;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+            margin: 0 15px; cursor: pointer; transition: 0.4s;
+            position: relative; font-size: 0.9rem;
         }
 
         .nav-btn.active::after {
-            content: ''; position: absolute; bottom: -20px; left: 0; width: 100%; height: 3px;
+            content: ''; position: absolute; bottom: -10px; left: 0; width: 100%; height: 3px;
             background: var(--avosity-blue); box-shadow: 0 0 15px var(--avosity-blue);
         }
 
         .nav-btn.active, .nav-btn:hover { color: var(--avosity-blue); opacity: 1; }
 
-        /* Content Area */
         .content-area {
             flex-grow: 1; display: flex; align-items: center; justify-content: center;
-            width: 100%; z-index: 10;
+            width: 100%; z-index: 10; padding: 20px;
         }
 
-        .page-section { display: none; text-align: center; width: 100%; animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        .page-section { display: none; text-align: center; width: 100%; max-width: 1100px; animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
         .page-section.active { display: block; }
 
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); filter: blur(10px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
@@ -74,12 +74,10 @@
         .glass-card {
             background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 15px; padding: 50px 30px; 
-            position: relative; overflow: hidden;
-            transition: 0.5s;
+            border-radius: 15px; position: relative; overflow: hidden; transition: 0.5s;
+            height: 100%;
         }
 
-        /* The Animated Border Beam */
         .glass-card::before {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: conic-gradient(transparent, transparent, transparent, var(--avosity-blue));
@@ -90,33 +88,50 @@
 
         .card-inner {
             background: #0a0a0a; border-radius: 13px;
-            height: 100%; width: 100%; padding: 40px 20px;
+            height: calc(100% - 4px); width: calc(100% - 4px); 
+            margin: 2px; padding: 30px 15px;
         }
 
-        .glass-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 0 50px rgba(0, 212, 255, 0.3);
-        }
+        .glass-card:hover { transform: translateY(-10px); box-shadow: 0 0 40px rgba(0, 212, 255, 0.3); }
 
         .btn-avosity {
             background: transparent; color: var(--avosity-blue); 
             border: 2px solid var(--avosity-blue);
-            font-weight: 700; border-radius: 4px; padding: 12px 30px;
+            font-weight: 700; border-radius: 4px; padding: 8px 20px;
             text-decoration: none; display: inline-block;
-            transition: 0.3s; margin-top: 20px;
+            transition: 0.3s; margin-top: 15px; font-size: 0.8rem;
         }
 
         .btn-avosity:hover { background: var(--avosity-blue); color: black; box-shadow: 0 0 20px var(--avosity-blue); }
 
-        .soon { font-size: 6rem; font-weight: 700; letter-spacing: 20px; opacity: 0.1; color: white; }
-        
-        h1 { font-size: clamp(4rem, 15vw, 7rem); font-weight: 700; letter-spacing: 20px; margin-bottom: 0;
+        /* Home Content Fix */
+        .about-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 25px; border-radius: 15px;
+            max-width: 600px; margin: 20px auto;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 { font-size: clamp(2.5rem, 10vw, 5rem); font-weight: 700; letter-spacing: 10px; 
              background: linear-gradient(to right, #fff, var(--avosity-blue), #fff);
              background-size: 200% auto; animation: shine 4s linear infinite;
              -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
         @keyframes shine { to { background-position: 200% center; } }
+
+        .soon { font-size: 4rem; font-weight: 700; letter-spacing: 15px; opacity: 0.1; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .navbar { padding: 10px 0; }
+            .nav-btn { margin: 0 8px; font-size: 0.8rem; letter-spacing: 1px; }
+            .content-area { padding-top: 80px; align-items: flex-start; }
+            .about-box { font-size: 0.9rem; padding: 15px; }
+            h1 { letter-spacing: 5px; }
+            .soon { font-size: 2.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -134,9 +149,12 @@
 
         <div class="content-area">
             <div id="home" class="page-section active">
-                <img src="/static/logo.png" width="160" style="filter: drop-shadow(0 0 20px var(--avosity-blue))" class="mb-4">
+                <img src="/static/logo.png" width="120" style="filter: drop-shadow(0 0 20px var(--avosity-blue))" class="mb-3">
                 <h1>AVOSITY</h1>
-                <p class="opacity-50" style="letter-spacing: 10px; font-size: 1.2rem;">THE FUTURE OF COMPETITIVE GAMING</p>
+                <div class="about-box">
+                    <h4 style="color: var(--avosity-blue); letter-spacing: 3px;">ABOUT US</h4>
+                    <p class="mb-0">We are a premier Esports organization focused on dominating the competitive scene. Primarily targeted around <strong>Rocket League</strong> and <strong>Fortnite</strong>, we aim to illuminate the path for upcoming talent and redefine the future of gaming.</p>
+                </div>
             </div>
 
             <div id="merch" class="page-section">
@@ -145,31 +163,40 @@
 
             <div id="socials" class="page-section">
                 <div class="container">
-                    <div class="row g-4 justify-content-center">
-                        <div class="col-md-3">
+                    <div class="row g-3 justify-content-center">
+                        <div class="col-6 col-md-3">
                             <div class="glass-card">
                                 <div class="card-inner">
-                                    <i class="fab fa-discord fa-4x mb-4" style="color: var(--avosity-blue);"></i>
-                                    <h3 class="letter-spacing-2">DISCORD</h3>
-                                    <a href="YOUR_LINK" class="btn-avosity">CONNECT</a>
+                                    <i class="fab fa-discord fa-2x mb-2" style="color: var(--avosity-blue);"></i>
+                                    <h6>DISCORD</h6>
+                                    <a href="YOUR_LINK" class="btn-avosity">JOIN</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-6 col-md-3">
                             <div class="glass-card">
                                 <div class="card-inner">
-                                    <i class="fab fa-x-twitter fa-4x mb-4" style="color: var(--avosity-blue);"></i>
-                                    <h3>TWITTER</h3>
+                                    <i class="fab fa-x-twitter fa-2x mb-2" style="color: var(--avosity-blue);"></i>
+                                    <h6>TWITTER</h6>
                                     <a href="YOUR_LINK" class="btn-avosity">FOLLOW</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-6 col-md-3">
                             <div class="glass-card">
                                 <div class="card-inner">
-                                    <i class="fab fa-youtube fa-4x mb-4" style="color: var(--avosity-blue);"></i>
-                                    <h3>YOUTUBE</h3>
-                                    <a href="YOUR_LINK" class="btn-avosity">SUBSCRIBE</a>
+                                    <i class="fab fa-youtube fa-2x mb-2" style="color: var(--avosity-blue);"></i>
+                                    <h6>YOUTUBE</h6>
+                                    <a href="YOUR_LINK" class="btn-avosity">WATCH</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="glass-card">
+                                <div class="card-inner">
+                                    <i class="fab fa-tiktok fa-2x mb-2" style="color: var(--avosity-blue);"></i>
+                                    <h6>TIKTOK</h6>
+                                    <a href="YOUR_LINK" class="btn-avosity">WATCH</a>
                                 </div>
                             </div>
                         </div>
