@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Avosity | Elite</title>
+    <title>Team Avosity | Ultra Elite</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
@@ -11,7 +11,6 @@
     <style>
         :root { 
             --avosity-blue: #00d4ff; 
-            --deep-blue: #0045cc;
             --bg-pure: #000000;
         }
 
@@ -22,23 +21,39 @@
             overflow-x: hidden; 
         }
 
-        /* Responsive Scroll Control */
         @media (min-width: 992px) { body, html { overflow: hidden; } }
 
+        /* ANIMATED PARTICLE BACKGROUND */
         .main-wrapper {
             min-height: 100vh; width: 100vw;
             position: relative;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1) 0%, rgba(0,0,0,1) 70%);
+            background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.15) 0%, rgba(0,0,0,1) 80%);
             display: flex; flex-direction: column; align-items: center;
+            z-index: 1;
         }
 
         .bg-banner {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('/static/banner.jpg');
             background-size: cover; background-position: center;
-            z-index: -1;
+            z-index: -2;
         }
 
+        /* Particle Stars Animation */
+        .particles {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            overflow: hidden; z-index: -1;
+        }
+        .particle {
+            position: absolute; background: white; border-radius: 50%;
+            opacity: 0.3; animation: moveParticles 20s linear infinite;
+        }
+        @keyframes moveParticles {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-1000px); }
+        }
+
+        /* Navbar */
         .navbar {
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(20px);
@@ -52,85 +67,59 @@
             margin: 0 15px; cursor: pointer; transition: 0.4s;
             position: relative; font-size: 0.9rem;
         }
-
         .nav-btn.active::after {
             content: ''; position: absolute; bottom: -10px; left: 0; width: 100%; height: 3px;
             background: var(--avosity-blue); box-shadow: 0 0 15px var(--avosity-blue);
         }
+        .nav-btn.active, .nav-btn:hover { color: var(--avosity-blue); }
 
-        .nav-btn.active, .nav-btn:hover { color: var(--avosity-blue); opacity: 1; }
-
-        .content-area {
-            flex-grow: 1; display: flex; align-items: center; justify-content: center;
-            width: 100%; z-index: 10; padding: 20px;
-        }
-
-        .page-section { display: none; text-align: center; width: 100%; max-width: 1100px; animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        /* Content Sections */
+        .content-area { flex-grow: 1; display: flex; align-items: center; justify-content: center; width: 100%; z-index: 10; padding: 20px; }
+        .page-section { display: none; text-align: center; width: 100%; max-width: 1100px; animation: slideUp 0.6s ease-out; }
         .page-section.active { display: block; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); filter: blur(10px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
-
-        /* ELITE CARD SYSTEM */
+        /* GLASS CARDS WITH BEAMS */
         .glass-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+            background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 15px; position: relative; overflow: hidden; transition: 0.5s;
             height: 100%;
         }
-
         .glass-card::before {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: conic-gradient(transparent, transparent, transparent, var(--avosity-blue));
             animation: rotate 4s linear infinite; z-index: -1;
         }
-        
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .card-inner { background: #0a0a0a; border-radius: 13px; margin: 2px; padding: 30px 15px; }
 
-        .card-inner {
-            background: #0a0a0a; border-radius: 13px;
-            height: calc(100% - 4px); width: calc(100% - 4px); 
-            margin: 2px; padding: 30px 15px;
+        /* RECRUITMENT BUTTON */
+        .btn-recruit {
+            background: var(--avosity-blue); color: black; font-weight: 800;
+            padding: 12px 35px; border-radius: 50px; text-decoration: none;
+            display: inline-block; margin-top: 20px; text-transform: uppercase;
+            letter-spacing: 2px; box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+            animation: pulseGlow 2s infinite; transition: 0.3s;
         }
-
-        .glass-card:hover { transform: translateY(-10px); box-shadow: 0 0 40px rgba(0, 212, 255, 0.3); }
-
-        .btn-avosity {
-            background: transparent; color: var(--avosity-blue); 
-            border: 2px solid var(--avosity-blue);
-            font-weight: 700; border-radius: 4px; padding: 8px 20px;
-            text-decoration: none; display: inline-block;
-            transition: 0.3s; margin-top: 15px; font-size: 0.8rem;
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 10px rgba(0, 212, 255, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(0, 212, 255, 0.8); }
+            100% { box-shadow: 0 0 10px rgba(0, 212, 255, 0.4); }
         }
+        .btn-recruit:hover { transform: scale(1.05); color: black; }
 
-        .btn-avosity:hover { background: var(--avosity-blue); color: black; box-shadow: 0 0 20px var(--avosity-blue); }
-
-        /* Home Content Fix */
-        .about-box {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 25px; border-radius: 15px;
-            max-width: 600px; margin: 20px auto;
-            backdrop-filter: blur(10px);
-        }
-
-        h1 { font-size: clamp(2.5rem, 10vw, 5rem); font-weight: 700; letter-spacing: 10px; 
+        h1 { font-size: clamp(3rem, 12vw, 6rem); font-weight: 700; letter-spacing: 15px;
              background: linear-gradient(to right, #fff, var(--avosity-blue), #fff);
              background-size: 200% auto; animation: shine 4s linear infinite;
              -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-
         @keyframes shine { to { background-position: 200% center; } }
 
-        .soon { font-size: 4rem; font-weight: 700; letter-spacing: 15px; opacity: 0.1; }
-
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            .navbar { padding: 10px 0; }
-            .nav-btn { margin: 0 8px; font-size: 0.8rem; letter-spacing: 1px; }
-            .content-area { padding-top: 80px; align-items: flex-start; }
-            .about-box { font-size: 0.9rem; padding: 15px; }
-            h1 { letter-spacing: 5px; }
-            .soon { font-size: 2.5rem; }
+        .about-box {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+            padding: 25px; border-radius: 15px; max-width: 650px; margin: 20px auto;
+            backdrop-filter: blur(10px);
         }
     </style>
 </head>
@@ -138,6 +127,7 @@
 
     <div class="main-wrapper">
         <div class="bg-banner"></div>
+        <div class="particles" id="particle-container"></div>
         
         <nav class="navbar">
             <div class="container d-flex justify-content-center">
@@ -149,56 +139,45 @@
 
         <div class="content-area">
             <div id="home" class="page-section active">
-                <img src="/static/logo.png" width="120" style="filter: drop-shadow(0 0 20px var(--avosity-blue))" class="mb-3">
+                <img src="/static/logo.png" width="130" style="filter: drop-shadow(0 0 20px var(--avosity-blue))" class="mb-3">
                 <h1>AVOSITY</h1>
                 <div class="about-box">
                     <h4 style="color: var(--avosity-blue); letter-spacing: 3px;">ABOUT US</h4>
-                    <p class="mb-0">We are a premier Esports organization focused on dominating the competitive scene. Primarily targeted around <strong>Rocket League</strong> and <strong>Fortnite</strong>, we aim to illuminate the path for upcoming talent and redefine the future of gaming.</p>
+                    <p class="mb-0 opacity-75">We are a premier Esports organization primarily targeted around <strong>Rocket League</strong> and <strong>Fortnite</strong>. We redefine the competitive scene through skill, community, and innovation.</p>
                 </div>
+                <a href="YOUR_DISCORD_LINK" class="btn-recruit">Join the Team</a>
             </div>
 
             <div id="merch" class="page-section">
-                <div class="soon">SOON</div>
+                <div style="font-size: 5rem; font-weight: 700; letter-spacing: 20px; opacity: 0.1;">SOON</div>
             </div>
 
             <div id="socials" class="page-section">
                 <div class="container">
                     <div class="row g-3 justify-content-center">
                         <div class="col-6 col-md-3">
-                            <div class="glass-card">
-                                <div class="card-inner">
-                                    <i class="fab fa-discord fa-2x mb-2" style="color: var(--avosity-blue);"></i>
-                                    <h6>DISCORD</h6>
-                                    <a href="YOUR_LINK" class="btn-avosity">JOIN</a>
-                                </div>
-                            </div>
+                            <div class="glass-card"><div class="card-inner">
+                                <i class="fab fa-discord fa-2x mb-2" style="color: var(--avosity-blue);"></i>
+                                <h6>DISCORD</h6><a href="YOUR_LINK" class="btn-recruit" style="padding: 5px 15px; font-size: 0.7rem; animation: none;">JOIN</a>
+                            </div></div>
                         </div>
                         <div class="col-6 col-md-3">
-                            <div class="glass-card">
-                                <div class="card-inner">
-                                    <i class="fab fa-x-twitter fa-2x mb-2" style="color: var(--avosity-blue);"></i>
-                                    <h6>TWITTER</h6>
-                                    <a href="YOUR_LINK" class="btn-avosity">FOLLOW</a>
-                                </div>
-                            </div>
+                            <div class="glass-card"><div class="card-inner">
+                                <i class="fab fa-x-twitter fa-2x mb-2" style="color: var(--avosity-blue);"></i>
+                                <h6>TWITTER</h6><a href="YOUR_LINK" class="btn-recruit" style="padding: 5px 15px; font-size: 0.7rem; animation: none;">FOLLOW</a>
+                            </div></div>
                         </div>
                         <div class="col-6 col-md-3">
-                            <div class="glass-card">
-                                <div class="card-inner">
-                                    <i class="fab fa-youtube fa-2x mb-2" style="color: var(--avosity-blue);"></i>
-                                    <h6>YOUTUBE</h6>
-                                    <a href="YOUR_LINK" class="btn-avosity">WATCH</a>
-                                </div>
-                            </div>
+                            <div class="glass-card"><div class="card-inner">
+                                <i class="fab fa-youtube fa-2x mb-2" style="color: var(--avosity-blue);"></i>
+                                <h6>YOUTUBE</h6><a href="YOUR_LINK" class="btn-recruit" style="padding: 5px 15px; font-size: 0.7rem; animation: none;">WATCH</a>
+                            </div></div>
                         </div>
                         <div class="col-6 col-md-3">
-                            <div class="glass-card">
-                                <div class="card-inner">
-                                    <i class="fab fa-tiktok fa-2x mb-2" style="color: var(--avosity-blue);"></i>
-                                    <h6>TIKTOK</h6>
-                                    <a href="YOUR_LINK" class="btn-avosity">WATCH</a>
-                                </div>
-                            </div>
+                            <div class="glass-card"><div class="card-inner">
+                                <i class="fab fa-tiktok fa-2x mb-2" style="color: var(--avosity-blue);"></i>
+                                <h6>TIKTOK</h6><a href="YOUR_LINK" class="btn-recruit" style="padding: 5px 15px; font-size: 0.7rem; animation: none;">WATCH</a>
+                            </div></div>
                         </div>
                     </div>
                 </div>
@@ -207,10 +186,22 @@
     </div>
 
     <script>
+        // Generate Particles
+        const container = document.getElementById('particle-container');
+        for (let i = 0; i < 50; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 3 + 'px';
+            p.style.width = size; p.style.height = size;
+            p.style.left = Math.random() * 100 + '%';
+            p.style.top = Math.random() * 100 + '%';
+            p.style.animationDelay = Math.random() * 20 + 's';
+            container.appendChild(p);
+        }
+
         function showPage(pageId) {
             document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if(btn.innerText.toLowerCase() === pageId) btn.classList.add('active');
