@@ -54,7 +54,7 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* --- DYNAMIC BACKGROUND & ORBS (YOUR ORIGINALS) --- */
+        /* --- DYNAMIC BACKGROUND & ORBS --- */
         #tsparticles {
             position: fixed;
             width: 100%;
@@ -122,17 +122,6 @@
             text-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
         }
 
-        /* --- STATS CARDS --- */
-        .stat-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(0, 212, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            transition: 0.4s;
-        }
-        .stat-card:hover { border-color: var(--avosity-blue); transform: translateY(-5px); }
-        .stat-val { font-size: 3rem; font-weight: 800; color: var(--avosity-blue); }
-
         /* --- MISSION BLOCK --- */
         .mission-text {
             border-left: 3px solid var(--avosity-blue);
@@ -182,7 +171,7 @@
         }
         .cta-box:hover { border-color: var(--avosity-blue); box-shadow: 0 0 30px rgba(0, 212, 255, 0.1); }
 
-        /* --- SOCIAL HOVER GLOWS (YOUR ORIGINALS) --- */
+        /* --- SOCIAL HOVER GLOWS --- */
         .social-link {
             color: rgba(255, 255, 255, 0.4);
             font-size: 2.8rem;
@@ -256,37 +245,7 @@
         </div>
     </section>
 
-    <!-- NEW: STATUS TRACKER SECTION -->
-    <section class="container py-5">
-        <div class="row g-4 text-center">
-            <div class="col-md-3" data-aos="fade-up">
-                <div class="stat-card">
-                    <div class="stat-val">2026</div>
-                    <div class="small fw-bold opacity-50 text-uppercase">Founded</div>
-                </div>
-            </div>
-            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
-                <div class="stat-card">
-                    <div class="stat-val">3</div>
-                    <div class="small fw-bold opacity-50 text-uppercase">Divisions</div>
-                </div>
-            </div>
-            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-                <div class="stat-card">
-                    <div class="stat-val">100%</div>
-                    <div class="small fw-bold opacity-50 text-uppercase">Dedication</div>
-                </div>
-            </div>
-            <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
-                <div class="stat-card">
-                    <div class="stat-val">ELITE</div>
-                    <div class="small fw-bold opacity-50 text-uppercase">Rank</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- NEW: MISSION SECTION -->
+    <!-- MISSION SECTION -->
     <section class="container py-5 my-5">
         <div class="row align-items-center">
             <div class="col-md-6" data-aos="fade-right">
@@ -370,7 +329,7 @@
     <script>
         AOS.init({ duration: 1000, once: true });
 
-        // YOUR ORIGINAL MOUSE GRAB PARTICLES
+        // MOUSE GRAB PARTICLES
         tsParticles.load("tsparticles", {
             particles: {
                 number: { value: 100, density: { enable: true, area: 800 } },
