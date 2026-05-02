@@ -17,7 +17,9 @@
             --deep-blue: #0045cc;
             --bg-black: #060606;
             --card-bg: rgba(20, 20, 20, 0.6);
+            --discord: #5865F2;
             --tiktok: #ff0050;
+            --youtube: #ff0000;
         }
 
         html { scroll-behavior: smooth; }
@@ -30,7 +32,7 @@
             margin: 0;
         }
 
-        /* --- GLOW EFFECTS --- */
+        /* --- DYNAMIC BACKGROUND & ORBS --- */
         #tsparticles {
             position: fixed;
             width: 100%;
@@ -40,27 +42,26 @@
 
         .glow-orb {
             position: fixed;
-            width: 500px;
-            height: 500px;
+            width: 600px;
+            height: 600px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.12) 0%, transparent 70%);
             z-index: -2;
-            filter: blur(80px);
+            filter: blur(100px);
             pointer-events: none;
-            animation: floatGlow 20s infinite alternate;
+            animation: floatGlow 25s infinite alternate;
         }
-
-        .orb-1 { top: -10%; left: -10%; }
-        .orb-2 { bottom: -10%; right: -10%; background: radial-gradient(circle, rgba(0, 69, 204, 0.15) 0%, transparent 70%); }
+        .orb-1 { top: -15%; left: -10%; }
+        .orb-2 { bottom: -15%; right: -10%; background: radial-gradient(circle, rgba(0, 69, 204, 0.1) 0%, transparent 70%); }
 
         @keyframes floatGlow {
             from { transform: translate(0, 0); }
-            to { transform: translate(100px, 50px); }
+            to { transform: translate(150px, 80px); }
         }
 
         /* --- NAVBAR --- */
         .navbar {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(0, 212, 255, 0.2);
             padding: 15px 0;
@@ -68,7 +69,8 @@
             top: 0;
             z-index: 1000;
         }
-        .navbar-brand { font-weight: 800; letter-spacing: 2px; color: var(--avosity-blue) !important; }
+        .navbar-brand { font-weight: 800; letter-spacing: 2px; color: var(--avosity-blue) !important; font-size: 1.8rem;}
+        
         .nav-link {
             color: rgba(255,255,255,0.7) !important;
             font-weight: 700;
@@ -76,30 +78,26 @@
             margin: 0 15px;
             transition: 0.3s;
         }
-        .nav-link:hover { color: var(--avosity-blue) !important; text-shadow: 0 0 10px var(--avosity-blue); }
+        .nav-link:hover, .nav-link.active { 
+            color: var(--avosity-blue) !important; 
+            text-shadow: 0 0 15px var(--avosity-blue); 
+        }
 
-        /* --- HERO --- */
+        /* --- HERO (Watermark Removed) --- */
         .hero {
-            height: 90vh;
+            height: 85vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
         }
-        .hero-watermark {
-            position: absolute;
-            font-size: 25vw;
-            font-weight: 900;
-            color: rgba(0, 212, 255, 0.03);
-            z-index: -1;
-            user-select: none;
-        }
         .hero h1 {
             font-size: clamp(4rem, 15vw, 10rem);
             font-weight: 800;
             letter-spacing: 20px;
-            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+            color: #fff;
+            text-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
         }
 
         /* --- GAME CARDS --- */
@@ -107,75 +105,84 @@
             background: var(--card-bg);
             border-radius: 20px;
             overflow: hidden;
-            transition: 0.5s ease;
-            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0, 212, 255, 0.1);
             backdrop-filter: blur(10px);
             height: 100%;
         }
         .game-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
             border-color: var(--avosity-blue);
-            box-shadow: 0 0 40px rgba(0, 212, 255, 0.2);
+            box-shadow: 0 15px 45px rgba(0, 212, 255, 0.25);
         }
         .game-img {
-            height: 400px;
+            height: 450px;
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: flex-end;
-            padding: 25px;
+            padding: 30px;
             position: relative;
         }
         .game-img::after {
             content: '';
             position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 60%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            bottom: 0; left: 0; width: 100%; height: 70%;
+            background: linear-gradient(to top, rgba(0,0,0,1), transparent);
         }
-        .game-card h4 { position: relative; z-index: 2; font-weight: 800; letter-spacing: 2px; }
+        .game-card h4 { position: relative; z-index: 2; font-weight: 800; font-size: 1.8rem; letter-spacing: 2px; }
 
-        /* --- CTA / COMMUNITY --- */
+        /* --- COMMUNITY BOX --- */
         .cta-box {
-            background: rgba(10, 10, 10, 0.6);
-            border: 1px solid var(--avosity-blue);
+            background: rgba(10, 10, 10, 0.5);
+            border: 2px solid rgba(0, 212, 255, 0.3);
             border-radius: 30px;
-            padding: 60px;
-            backdrop-filter: blur(10px);
+            padding: 70px 40px;
+            backdrop-filter: blur(15px);
+            transition: 0.4s;
         }
+        .cta-box:hover { border-color: var(--avosity-blue); box-shadow: 0 0 30px rgba(0, 212, 255, 0.1); }
+
+        /* --- SOCIAL HOVER GLOWS (FIXED) --- */
+        .social-link {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 2.8rem;
+            transition: 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .social-link:hover { transform: translateY(-10px); }
+        
+        .discord-h:hover { color: var(--discord); filter: drop-shadow(0 0 20px var(--discord)); }
+        .twitter-h:hover { color: #fff; filter: drop-shadow(0 0 20px #fff); }
+        .tiktok-h:hover { color: var(--tiktok); filter: drop-shadow(0 0 20px var(--tiktok)); }
+        .youtube-h:hover { color: var(--youtube); filter: drop-shadow(0 0 20px var(--youtube)); }
 
         /* --- BUTTONS --- */
         .btn-avosity {
             background: var(--avosity-blue);
             color: #000;
             font-weight: 800;
-            padding: 15px 45px;
+            padding: 16px 45px;
             text-transform: uppercase;
             text-decoration: none;
             display: inline-block;
             border-radius: 5px;
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
             transition: 0.3s;
         }
-        .btn-avosity:hover { background: white; transform: scale(1.05); color: #000; }
-
-        /* --- SOCIALS --- */
-        .social-link {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 2.2rem;
-            transition: 0.3s;
-        }
-        .social-link:hover { transform: translateY(-5px); color: var(--avosity-blue); }
+        .btn-avosity:hover { background: #fff; transform: scale(1.05); color: #000; box-shadow: 0 0 30px #fff; }
 
         footer {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 80px 0 30px;
-            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            background: rgba(0, 0, 0, 0.95);
+            padding: 80px 0 40px;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
         }
     </style>
 </head>
 <body>
 
-    <!-- Dynamic Particle Background -->
+    <!-- Particle Engine -->
     <div id="tsparticles"></div>
     <div class="glow-orb orb-1"></div>
     <div class="glow-orb orb-2"></div>
@@ -183,30 +190,32 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="#">AVOSITY</a>
-            <div class="navbar-nav ms-auto d-none d-lg-flex">
-                <a class="nav-link" href="#games">Rosters</a>
-                <a class="nav-link" href="#community">Community</a>
-                <a class="nav-link" href="https://discord.gg/DUFS9GZ3AU" target="_blank">Discord</a>
+            <div class="collapse navbar-collapse justify-content-end">
+                <div class="navbar-nav">
+                    <a class="nav-link active" href="#">Home</a>
+                    <a class="nav-link" href="#games">Rosters</a>
+                    <a class="nav-link" href="#community">Community</a>
+                    <a class="nav-link" href="https://discord.gg/DUFS9GZ3AU" target="_blank">Join Us</a>
+                </div>
             </div>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-watermark">AVOSITY</div>
-        <div class="container" data-aos="zoom-in">
+        <div class="container" data-aos="zoom-in" data-aos-duration="1200">
             <h1>AVOSITY</h1>
-            <p class="lead mb-5" style="letter-spacing: 10px;">PREMIER ESPORTS | EST. 2026</p>
-            <div class="d-flex justify-content-center gap-3">
-                <a href="#games" class="btn-avosity">View Ranks</a>
-                <a href="https://discord.gg/DUFS9GZ3AU" target="_blank" class="btn btn-outline-light px-5 py-3 fw-bold">JOIN DISCORD</a>
+            <p class="lead mb-5" style="letter-spacing: 12px; font-weight: 500; opacity: 0.8;">EST. 2026 | UNLEASH EXCELLENCE</p>
+            <div class="d-flex justify-content-center gap-4">
+                <a href="#games" class="btn-avosity">Explore Rosters</a>
+                <a href="https://discord.gg/DUFS9GZ3AU" target="_blank" class="btn btn-outline-light px-5 py-3 fw-bold">DISCORD</a>
             </div>
         </div>
     </section>
 
     <section id="games" class="container py-5">
         <div class="text-center mb-5" data-aos="fade-up">
-            <h2 class="fw-bold display-4">ELITE ROSTERS</h2>
-            <div style="width: 80px; height: 4px; background: var(--avosity-blue); margin: 10px auto;"></div>
+            <h2 class="fw-bold display-4">COMPETITIVE DIVISIONS</h2>
+            <div style="width: 100px; height: 4px; background: var(--avosity-blue); margin: 15px auto; box-shadow: 0 0 15px var(--avosity-blue);"></div>
         </div>
         <div class="row g-4">
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
@@ -233,47 +242,60 @@
         </div>
     </section>
 
-    <section id="community" class="container py-5">
+    <section id="community" class="container py-5 my-5">
         <div class="cta-box text-center" data-aos="flip-up">
-            <h2 class="display-5 fw-bold mb-4">JOIN THE COMMUNITY</h2>
+            <h2 class="display-5 fw-bold mb-5">JOIN THE LEGACY</h2>
+            
             <div class="d-flex justify-content-center gap-5 mb-5">
-                <a href="https://discord.gg/DUFS9GZ3AU" target="_blank" class="social-link"><i class="fab fa-discord"></i></a>
-                <a href="https://x.com/TeamAvosity" target="_blank" class="social-link"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.tiktok.com/@teamavosity" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>
-                <a href="https://www.youtube.com/@Team.Avosity" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+                <a href="https://discord.gg/DUFS9GZ3AU" target="_blank" class="social-link discord-h"><i class="fab fa-discord"></i></a>
+                <a href="https://x.com/TeamAvosity" target="_blank" class="social-link twitter-h"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.tiktok.com/@teamavosity" target="_blank" class="social-link tiktok-h"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.youtube.com/@Team.Avosity" target="_blank" class="social-link youtube-h"><i class="fab fa-youtube"></i></a>
             </div>
-            <a href="https://discord.gg/DUFS9GZ3AU" target="_blank" class="btn-avosity">Connect on Discord</a>
+            
+            <a href="https://discord.gg/DUFS9GZ3AU" target="_blank" class="btn-avosity">Enter Official Discord</a>
         </div>
     </section>
 
     <footer>
-        <div class="container text-center">
-            <h4 class="fw-bold mb-4" style="color: var(--avosity-blue);">AVOSITY</h4>
-            <p class="text-muted small">© 2026 TEAM AVOSITY. ALL RIGHTS RESERVED.</p>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <h3 class="fw-bold mb-0" style="color: var(--avosity-blue); letter-spacing: 2px;">AVOSITY</h3>
+                    <p class="text-muted small mt-2">© 2026 TEAM AVOSITY. BUILT FOR THE NEXT GENERATION.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3 mt-3 mt-md-0">
+                        <a href="https://x.com/TeamAvosity" class="text-muted text-decoration-none small">Twitter</a>
+                        <a href="https://discord.gg/DUFS9GZ3AU" class="text-muted text-decoration-none small">Discord</a>
+                        <a href="https://www.tiktok.com/@teamavosity" class="text-muted text-decoration-none small">TikTok</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-stars@2/tsparticles.preset.stars.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <script>
         AOS.init({ duration: 1000, once: true });
 
-        // Particle Configuration
+        // Optimized Particle Logic
         tsParticles.load("tsparticles", {
             particles: {
-                number: { value: 80 },
+                number: { value: 100, density: { enable: true, area: 800 } },
                 color: { value: "#00d4ff" },
                 shape: { type: "circle" },
-                opacity: { value: 0.3 },
-                size: { value: 2 },
+                opacity: { value: 0.4, random: true },
+                size: { value: { min: 1, max: 3 } },
                 move: {
                     enable: true,
-                    speed: 1,
+                    speed: 1.5,
                     direction: "none",
+                    random: false,
+                    straight: false,
                     outModes: { default: "out" }
                 },
                 links: {
@@ -288,6 +310,9 @@
                 events: {
                     onHover: { enable: true, mode: "grab" },
                     onClick: { enable: true, mode: "push" }
+                },
+                modes: {
+                    grab: { distance: 200, links: { opacity: 0.5 } }
                 }
             }
         });
