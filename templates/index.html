@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Avosity | Premier Esports</title>
+    <!-- Use Bootstrap 5 and FontAwesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
@@ -23,11 +24,11 @@
             overflow-x: hidden;
         }
 
-        /* NAVBAR */
+        /* NAVBAR - Enhanced Glassmorphism */
         .navbar {
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
             padding: 15px 0;
             position: sticky;
             top: 0;
@@ -46,131 +47,93 @@
             text-shadow: 0 0 10px var(--avosity-blue);
         }
 
-        /* HERO SECTION */
+        /* HERO - Added Gradient Overlay */
         .hero {
-            height: 80vh;
+            height: 90vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
-            background: radial-gradient(circle at center, rgba(0, 212, 255, 0.05) 0%, transparent 70%);
+            background: radial-gradient(circle at center, rgba(0, 212, 255, 0.1) 0%, transparent 80%);
         }
         .hero-watermark {
             position: absolute;
-            font-size: 25vw;
+            font-size: 20vw;
             font-weight: 900;
-            opacity: 0.03;
+            opacity: 0.02;
             z-index: -1;
             user-select: none;
+            pointer-events: none;
         }
         .hero h1 {
-            font-size: clamp(3rem, 10vw, 7rem);
+            font-size: clamp(3.5rem, 12vw, 8rem);
             font-weight: 800;
-            letter-spacing: 10px;
-            margin-bottom: 10px;
-            color: white;
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-        }
-        .hero p {
-            font-size: 1.5rem;
-            opacity: 0.7;
-            letter-spacing: 3px;
+            letter-spacing: 15px;
+            margin-bottom: 5px;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
         }
 
-        /* SECTION HEADERS */
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-        }
-        .section-title h2 {
-            font-weight: 800;
-            font-size: 2.5rem;
-            letter-spacing: 4px;
-        }
-        .underline {
-            width: 60px;
-            height: 4px;
-            background: var(--avosity-blue);
-            margin: 15px auto;
-            box-shadow: 0 0 10px var(--avosity-blue);
-        }
-
-        /* GAME CARDS */
+        /* GAME CARDS - Direct Image fixes and Hover Glow */
         .game-card {
             background: var(--card-bg);
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            transition: 0.4s;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(255,255,255,0.05);
             height: 100%;
         }
         .game-card:hover {
-            transform: translateY(-10px);
+            transform: scale(1.03);
             border-color: var(--avosity-blue);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.15);
         }
         .game-img {
-            height: 400px;
+            height: 450px;
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: flex-end;
-            padding: 20px;
+            padding: 25px;
             position: relative;
         }
         .game-img::after {
             content: '';
             position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 60%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            bottom: 0; left: 0; width: 100%; height: 70%;
+            background: linear-gradient(to top, rgba(0,0,0,1), transparent);
         }
         .game-card h4 {
             position: relative;
             z-index: 2;
             font-weight: 800;
-            margin: 0;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            color: white;
+        }
+
+        /* BUTTONS */
+        .btn-avosity {
+            background: var(--avosity-blue);
+            color: #000;
+            font-weight: 800;
+            padding: 14px 35px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            border: none;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+            transition: 0.3s;
+        }
+        .btn-avosity:hover {
+            background: white;
+            box-shadow: 0 0 25px white;
+            transform: translateY(-2px);
         }
 
         /* FOOTER */
         footer {
             background: #050505;
-            padding: 80px 0 30px;
+            padding: 100px 0 40px;
             border-top: 1px solid rgba(255,255,255,0.05);
-            margin-top: 100px;
-        }
-        .footer-logo { width: 60px; filter: drop-shadow(0 0 10px var(--avosity-blue)); }
-        .footer-heading {
-            font-weight: 800;
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-            color: var(--avosity-blue);
-            text-transform: uppercase;
-        }
-        .footer-links { list-style: none; padding: 0; }
-        .footer-links li { margin-bottom: 12px; }
-        .footer-links a {
-            color: rgba(255,255,255,0.5);
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        .footer-links a:hover { color: white; padding-left: 5px; }
-
-        .btn-avosity {
-            background: var(--avosity-blue);
-            color: black;
-            font-weight: 800;
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-transform: uppercase;
-            border: none;
-            transition: 0.3s;
-        }
-        .btn-avosity:hover {
-            background: white;
-            box-shadow: 0 0 20px white;
         }
     </style>
 </head>
@@ -178,14 +141,13 @@
 
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#"><img src="/logo.png" height="50" alt="Avosity"></a>
+            <a class="navbar-brand" href="#"><strong style="color: var(--avosity-blue); font-size: 1.5rem;">AVOSITY</strong></a>
             <div class="collapse navbar-collapse justify-content-end">
                 <div class="navbar-nav">
                     <a class="nav-link active" href="#">Home</a>
-                    <a class="nav-link" href="#about">About</a>
                     <a class="nav-link" href="#games">Games</a>
-                    <a class="nav-link" href="#merch">Shop</a>
-                    <a class="nav-link" href="#socials">Contact</a>
+                    <a class="nav-link" href="#shop">Shop</a>
+                    <a class="nav-link" href="#discord">Discord</a>
                 </div>
             </div>
         </div>
@@ -194,41 +156,43 @@
     <section class="hero">
         <div class="hero-watermark">AVOSITY</div>
         <div class="container">
-            <h1>AVOSITY</h1>
-            <p>DOMINATION IS OUR STANDARD</p>
-            <div class="mt-4">
-                <button class="btn-avosity me-3">View Roster</button>
-                <button class="btn btn-outline-light px-4 py-2 fw-bold">JOIN DISCORD</button>
+            <h1 class="display-1">AVOSITY</h1>
+            <p class="lead mb-4">A NEW ERA OF COMPETITIVE EXCELLENCE</p>
+            <div class="d-flex justify-content-center gap-3">
+                <button class="btn-avosity">Join the Ranks</button>
+                <button class="btn btn-outline-light px-4 py-2 fw-bold">Watch Trailer</button>
             </div>
         </div>
     </section>
 
-    <section id="games" class="container mt-5">
-        <div class="section-title">
-            <h2>Games We Play</h2>
-            <div class="underline"></div>
-            <p class="opacity-50">Competing at the highest level across multiple titles</p>
+    <section id="games" class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold display-5">ACTIVE ROSTERS</h2>
+            <div style="width: 80px; height: 4px; background: var(--avosity-blue); margin: 10px auto; box-shadow: 0 0 10px var(--avosity-blue);"></div>
         </div>
 
         <div class="row g-4">
+            <!-- Rocket League Card -->
             <div class="col-md-4">
                 <div class="game-card">
-                    <div class="game-img" style="background-image: url('https://ultimatepopculture.fandom.com/wiki/Rocket_League');">
+                    <div class="game-img" style="background-image: url('https://wallpapercave.com/wp/wp4503530.jpg');">
                         <h4>ROCKET LEAGUE</h4>
                     </div>
                 </div>
             </div>
+            <!-- Fortnite Card -->
             <div class="col-md-4">
                 <div class="game-card">
-                    <div class="game-img" style="background-image: url('https://www.imdb.com/title/tt8020008/');">
+                    <div class="game-img" style="background-image: url('https://wallpaperaccess.com/full/1155017.jpg');">
                         <h4>FORTNITE</h4>
                     </div>
                 </div>
             </div>
+            <!-- CS2 Card -->
             <div class="col-md-4">
                 <div class="game-card">
-                    <div class="game-img" style="background-image: url('https://www.reddit.com/r/GlobalOffensive/comments/1dvp8br/anyone_else_think_the_image_cs2_has_set_for_its/');">
-                        <h4>CS2</h4>
+                    <div class="game-img" style="background-image: url('https://wallpaperaccess.com/full/1231649.jpg');">
+                        <h4>COUNTER STRIKE 2</h4>
                     </div>
                 </div>
             </div>
@@ -238,40 +202,33 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-4 mb-5">
-                    <img src="/logo.png" class="footer-logo mb-3" alt="">
-                    <p class="opacity-50 pe-5">Competitive esports organization competing across multiple titles. Join the movement.</p>
+                <div class="col-md-5 mb-4">
+                    <h5 class="fw-bold mb-3">AVOSITY <span style="color:var(--avosity-blue)">ESPORTS</span></h5>
+                    <p class="text-muted">Pushing the boundaries of competition through community, skill, and relentless drive.</p>
+                    <div class="d-flex gap-3 fs-4 mt-3">
+                        <a href="#" class="text-white opacity-50"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white opacity-50"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="text-white opacity-50"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="col-md-2 mb-4">
-                    <h5 class="footer-heading">About</h5>
-                    <ul class="footer-links">
-                        <li><a href="#">Team</a></li>
-                        <li><a href="#">Roster</a></li>
-                        <li><a href="#">Staff</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-2 mb-4">
-                    <h5 class="footer-heading">Social</h5>
-                    <ul class="footer-links">
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">YouTube</a></li>
-                        <li><a href="#">TikTok</a></li>
-                        <li><a href="#">Discord</a></li>
+                <div class="col-md-3 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3" style="color: var(--avosity-blue);">Organization</h6>
+                    <ul class="list-unstyled text-muted">
+                        <li class="mb-2">About Us</li>
+                        <li class="mb-2">Careers</li>
+                        <li class="mb-2">Sponsors</li>
                     </ul>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <h5 class="footer-heading">Support</h5>
-                    <ul class="footer-links">
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Apparel</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
+                    <h6 class="text-uppercase fw-bold mb-3" style="color: var(--avosity-blue);">Newsletter</h6>
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-dark border-secondary text-white" placeholder="Email Address">
+                        <button class="btn btn-primary" type="button">Join</button>
+                    </div>
                 </div>
             </div>
-            <hr class="opacity-10 my-4">
-            <div class="text-center opacity-25 small">
-                &copy; 2026 Team Avosity. All rights reserved.
-            </div>
+            <hr class="mt-5 mb-4 opacity-25">
+            <p class="text-center text-muted small">&copy; 2026 Team Avosity. Designed for Domination.</p>
         </div>
     </footer>
 
