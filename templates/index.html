@@ -83,7 +83,7 @@
             text-shadow: 0 0 15px var(--avosity-blue); 
         }
 
-        /* --- HERO (Watermark Removed) --- */
+        /* --- HERO --- */
         .hero {
             height: 85vh;
             display: flex;
@@ -143,7 +143,7 @@
         }
         .cta-box:hover { border-color: var(--avosity-blue); box-shadow: 0 0 30px rgba(0, 212, 255, 0.1); }
 
-        /* --- SOCIAL HOVER GLOWS (FIXED) --- */
+        /* --- SOCIAL HOVER GLOWS --- */
         .social-link {
             color: rgba(255, 255, 255, 0.4);
             font-size: 2.8rem;
@@ -193,7 +193,7 @@
             <div class="collapse navbar-collapse justify-content-end">
                 <div class="navbar-nav">
                     <a class="nav-link active" href="#">Home</a>
-                    <a class="nav-link" href="#games">Rosters</a>
+                    <a class="nav-link" href="#games">Games</a>
                     <a class="nav-link" href="#community">Community</a>
                     <a class="nav-link" href="https://discord.gg/DUFS9GZ3AU" target="_blank">Join Us</a>
                 </div>
@@ -206,7 +206,7 @@
             <h1>AVOSITY</h1>
             <p class="lead mb-5" style="letter-spacing: 12px; font-weight: 500; opacity: 0.8;">EST. 2026 | UNLEASH EXCELLENCE</p>
             <div class="d-flex justify-content-center gap-4">
-                <a href="#games" class="btn-avosity">Explore Rosters</a>
+                <a href="#games" class="btn-avosity">View Games</a>
                 <a href="https://discord.gg/DUFS9GZ3AU" target="_blank" class="btn btn-outline-light px-5 py-3 fw-bold">DISCORD</a>
             </div>
         </div>
@@ -214,7 +214,7 @@
 
     <section id="games" class="container py-5">
         <div class="text-center mb-5" data-aos="fade-up">
-            <h2 class="fw-bold display-4">COMPETITIVE DIVISIONS</h2>
+            <h2 class="fw-bold display-4">ACTIVE DIVISIONS</h2>
             <div style="width: 100px; height: 4px; background: var(--avosity-blue); margin: 15px auto; box-shadow: 0 0 15px var(--avosity-blue);"></div>
         </div>
         <div class="row g-4">
@@ -282,7 +282,7 @@
     <script>
         AOS.init({ duration: 1000, once: true });
 
-        // Optimized Particle Logic
+        // Particle Logic
         tsParticles.load("tsparticles", {
             particles: {
                 number: { value: 100, density: { enable: true, area: 800 } },
